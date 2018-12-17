@@ -28,7 +28,7 @@ class OneSignalChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $userIds = $notifiable->routeNotificationFor('OneSignal', $notification)) {
+        if (! $userIds = $notifiable->routeNotificationFor(self::class, $notification)) {
             return;
         }
 
