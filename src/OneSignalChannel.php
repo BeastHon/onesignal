@@ -28,7 +28,8 @@ class OneSignalChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $userIds = $notifiable->routeNotificationFor(self::class, $notification)) {
+        $channel = $notifiable instanceof \Illuminate\Notifications\AnonymousNotifiable ? self::class : 'OneSignal';
+        if (! $userIds = $notifiable->routeNotificationFor($channel, $notification)) {
             return;
         }
 
